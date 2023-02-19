@@ -48,4 +48,150 @@ public class BinaryAPIControllerTest {
 			.andExpect(MockMvcResultMatchers.jsonPath("$.result").value(10001))
 			.andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("add"));
     }
+
+    //Test Case 1
+    @Test
+    public void add3() throws Exception {
+        this.mvc.perform(get("/add_json").param("operand1","1111").param("operand2","1111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1111))
+			.andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(1111))
+			.andExpect(MockMvcResultMatchers.jsonPath("$.result").value(011110))
+			.andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("add"));
+    }
+     //Test Case 2
+     @Test
+     public void add4() throws Exception {
+         this.mvc.perform(get("/add_json").param("operand1","1011").param("operand2","111"))//.andDo(print())
+             .andExpect(status().isOk())
+             .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1011))
+             .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(111))
+             .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(010010))
+             .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("add"));
+ 
+ }
+
+  //Test Case 3
+  @Test
+  public void add5() throws Exception {
+      this.mvc.perform(get("/add_json").param("operand1","111").param("operand2","1011"))//.andDo(print())
+          .andExpect(status().isOk())
+          .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(111))
+          .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(1011))
+          .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(010010))
+          .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("add"));
+
+}
+
+///*Test The and functions with two binary numbers
+@Test
+public void AND1() throws Exception {
+    this.mvc.perform(get("/bitwiseAND_json").param("operand1","1101").param("operand2","1001"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(1001))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1001))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseAND"));
+
+}
+
+/*Test The and functions with two binary numbers, the length of the first argument is greater than the second
+    */
+@Test
+public void AND2() throws Exception {
+    this.mvc.perform(get("/bitwiseAND_json").param("operand1","111011").param("operand2","101"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(111011))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseAND"));
+
+}
+/*Test The and functions with two binary numbers, the length of the first argument is less than the second
+    */
+@Test
+public void AND3() throws Exception {
+    this.mvc.perform(get("/bitwiseAND_json").param("operand1","101").param("operand2","111011"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(111011))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseAND"));
+
+}
+
+///*Test The or functions with two binary numbers
+@Test
+public void OR1() throws Exception {
+    this.mvc.perform(get("/bitwiseOR_json").param("operand1","1101").param("operand2","1001"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(1001))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseOR"));
+
+}
+
+/*Test The OR functions with two binary numbers, the length of the first argument is greater than the second
+    */
+@Test
+public void OR2() throws Exception {
+    this.mvc.perform(get("/bitwiseOR_json").param("operand1","111011").param("operand2","101"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(111011))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(111111))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseOR"));
+
+}
+/*Test The OR functions with two binary numbers, the length of the first argument is less than the second
+    */
+@Test
+public void OR3() throws Exception {
+    this.mvc.perform(get("/bitwiseOR_json").param("operand1","101").param("operand2","111011"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(111011))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(111111))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseOR"));
+
+}
+
+///*Test The MULTIPLY functions with two binary numbers
+@Test
+public void MULTIPLY1() throws Exception {
+    this.mvc.perform(get("/bitwiseMULTIPLY_json").param("operand1","1101").param("operand2","1001"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(1001))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1110101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseMULTIPLY"));
+
+}
+
+/*Test The MULTIPLY functions with two binary numbers, the length of the first argument is greater than the second
+    */
+@Test
+public void MULTIPLY2() throws Exception {
+    this.mvc.perform(get("/bitwiseMULTIPLY_json").param("operand1","111011").param("operand2","101"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(111011))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(100100111))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseMULTIPLY"));
+
+}
+/*Test The MULTIPLY functions with two binary numbers, the length of the first argument is less than the second
+    */
+@Test
+public void MULTIPLY3() throws Exception {
+    this.mvc.perform(get("/bitwiseMULTIPLY_json").param("operand1","101").param("operand2","111011"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(101))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(111011))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(100100111))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("bitwiseMULTIPLY"));
+
+}
+
 }

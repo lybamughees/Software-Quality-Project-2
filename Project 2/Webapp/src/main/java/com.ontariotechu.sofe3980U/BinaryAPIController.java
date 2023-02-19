@@ -26,5 +26,58 @@ public class BinaryAPIController {
         return  new BinaryAPIResult(number1,"add",number2,Binary.add(number1,number2));
 		// http://localhost:8080/add?operand1=111&operand2=1010
 	}
+	@GetMapping("/bitwiseOR")
+	public String orString(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  Binary.bitwiseOR(number1,number2).getValue();
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+	
+	@GetMapping("/bitwiseOR_json")
+	public BinaryAPIResult orJSON(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  new BinaryAPIResult(number1,"OR",number2,Binary.bitwiseOR(number1,number2));
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+
+	@GetMapping("/bitwiseAND")
+	public String andString(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  Binary.bitwiseAND(number1,number2).getValue();
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+	
+	@GetMapping("/bitwiseAND_json")
+	public BinaryAPIResult andJSON(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  new BinaryAPIResult(number1,"AND",number2,Binary.bitwiseAND(number1,number2));
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+
+	@GetMapping("/bitwiseMULTIPLY")
+	public String multiplyString(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  Binary.bitwiseMULTIPLY(number1,number2).getValue();
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
+	
+	@GetMapping("/bitwiseMULTIPLY_json")
+	public BinaryAPIResult multiplyJSON(@RequestParam(name="operand1", required=false, defaultValue="") String operand1,
+                       @RequestParam(name="operand2", required=false, defaultValue="") String operand2) {
+		Binary number1=new Binary (operand1);
+		Binary number2=new Binary (operand2);
+        return  new BinaryAPIResult(number1,"MULTIPLY",number2,Binary.bitwiseMULTIPLY(number1,number2));
+		// http://localhost:8080/add?operand1=111&operand2=1010
+	}
 
 }
