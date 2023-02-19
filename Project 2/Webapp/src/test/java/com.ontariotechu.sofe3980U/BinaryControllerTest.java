@@ -87,6 +87,98 @@ public class BinaryControllerTest {
 			.andExpect(model().attribute("operand1", "111"));
     }
 
+    //Testcase 4
+    @Test
+    public void postParameter4() throws Exception {
+        this.mvc.perform(post("/").param("operand1","1111").param("operator","|").param("operand2","1111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "1111"))
+			.andExpect(model().attribute("operand1", "1111"));
+    }
+
+     //Testcase 5
+     @Test
+     public void postParameter5() throws Exception {
+        this.mvc.perform(post("/").param("operand1","1011").param("operator","|").param("operand2","111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "1111"))
+			.andExpect(model().attribute("operand1", "1011"));
+    }
+
+    //Testcase 6
+    @Test
+    public void postParameter6() throws Exception {
+        this.mvc.perform(post("/").param("operand1","111").param("operator","|").param("operand2","1011"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "1111"))
+			.andExpect(model().attribute("operand1", "111"));
+    }
+
+    //Testcase 7
+    @Test
+    public void postParameter7() throws Exception {
+        this.mvc.perform(post("/").param("operand1","1111").param("operator","&").param("operand2","1111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "1111"))
+			.andExpect(model().attribute("operand1", "1111"));
+    }
+
+     //Testcase 8
+     @Test
+     public void postParameter8() throws Exception {
+        this.mvc.perform(post("/").param("operand1","1011").param("operator","&").param("operand2","111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "11"))
+			.andExpect(model().attribute("operand1", "1011"));
+    }
+
+    //Testcase 9
+    @Test
+    public void postParameter9() throws Exception {
+        this.mvc.perform(post("/").param("operand1","111").param("operator","&").param("operand2","1011"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "11"))
+			.andExpect(model().attribute("operand1", "111"));
+    }
+
+    //Testcase 10
+    @Test
+    public void postParameter10() throws Exception {
+        this.mvc.perform(post("/").param("operand1","1111").param("operator","*").param("operand2","1111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "11100001"))
+			.andExpect(model().attribute("operand1", "1111"));
+    }
+
+     //Testcase 11
+     @Test
+     public void postParameter11() throws Exception {
+        this.mvc.perform(post("/").param("operand1","1011").param("operator","*").param("operand2","111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "1001101"))
+			.andExpect(model().attribute("operand1", "1011"));
+    }
+
+    //Testcase 12
+    @Test
+    public void postParameter12() throws Exception {
+        this.mvc.perform(post("/").param("operand1","111").param("operator","*").param("operand2","1011"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "1001101"))
+			.andExpect(model().attribute("operand1", "111"));
+    }
+
+
+
 
 
 }
